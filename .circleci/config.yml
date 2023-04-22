@@ -1,0 +1,16 @@
+version: 2.1
+orbs:
+  android: circleci/android@2.1.2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/android:api-29
+    steps:
+      - checkout
+      - run:
+          name: Build APK
+          command: ./gradlew assembleDebug
+      - store_artifacts:
+          path: app/build/outputs/
+          destination: outputs
